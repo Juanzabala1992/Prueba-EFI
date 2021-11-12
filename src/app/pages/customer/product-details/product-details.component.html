@@ -1,0 +1,47 @@
+<div class="container">
+    <h1>Customer list</h1>
+    <table class="table table-primary table-hover text-center" *ngIf="products$ | async as product">
+        <thead>
+            <tr>
+                <th scope="col">SaleID</th>
+                <th scope="col">CustomerId</th>
+                <th scope="col">Lines</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let sale of sales; let i = index; let primero = first">
+                <th scope="row">{{sale.SaleID}}</th>
+                <td>{{sale.CustomerId}}</td>
+                <td><div *ngIf="primero; else data">
+                        <ul>
+                            <li>Productos: {{linesP[i]}} Unidades: {{linesU[i]}} 
+                                ID: {{product[i].ProductId}} Price: {{product[i].Price}}
+                                Name: {{product[i].Name}}
+                            </li>
+                            <li>Productos: {{linesP[i+1]}} Unidades: {{linesU[i+1]}}
+                                ID: {{product[i+1].ProductId}} Price: {{product[i+1].Price}}
+                                Name: {{product[i+1].Name}}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <ng-template #data>
+                        <ul>
+                            <li>Productos: {{linesP[i*2]}} Unidades: {{linesU[i*2]}}
+                                ID: {{product[i*2].ProductId}} Price: {{product[i*2].Price}}
+                                Name: {{product[i*2].Name}}
+                            </li>
+                            <li>Productos: {{linesP[(i*2)+1]}} Unidades: {{linesU[(i*2)+1]}}
+                                ID: {{product[(i*2)+1].ProductId}} Price: {{product[(i*2)+1].Price}}
+                                Name: {{product[(i*2)+1].Name}}
+                            </li>
+                        </ul>                        
+                    </ng-template>
+                </td>               
+            </tr>
+        </tbody>
+    </table>
+    <button (click)="goback()" class="btn btn-primary">
+        Volver
+    </button>
+</div>

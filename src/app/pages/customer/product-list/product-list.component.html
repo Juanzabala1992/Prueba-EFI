@@ -1,0 +1,30 @@
+<div class="container">
+    <h1>Products list</h1>
+       <table class="table table-primary table-hover text-center">
+        <thead>
+            <tr>
+                <th scope="col"(click)="tableOrder('Id')">Id
+                <fa-icon class="icon" *ngIf="showId" [icon]="faArrowAltCircleUp"></fa-icon>
+                <fa-icon class="icon" *ngIf="!showId" [icon]="faArrowAltCircleDown"></fa-icon>    
+                </th>
+                <th scope="col"(click)="tableOrder('Name')">Name
+                <fa-icon class="icon" *ngIf="show" [icon]="faSortAlphaUp"></fa-icon>
+                <fa-icon class="icon" *ngIf="!show" [icon]="faSortAlphaDownAlt"></fa-icon>
+                </th>
+                <th scope="col"(click)="tableOrder('Price')">Price
+                <fa-icon class="icon" *ngIf="!showP" [icon]="faArrowAltCircleUp"></fa-icon>
+                <fa-icon class="icon" *ngIf="showP" [icon]="faArrowAltCircleDown"></fa-icon>
+                </th>
+                <th scope="col">Weight</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products | orderBy: clave: reversa">
+                <th scope="row">{{product.ProductId}}</th>
+                <td>{{product.Name}}</td>
+                <td>{{product.Price}}</td>
+                <td>{{product.Weight}}</td>
+            </tr>
+        </tbody>        
+    </table>
+  </div>
